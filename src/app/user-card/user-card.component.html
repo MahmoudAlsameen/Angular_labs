@@ -1,0 +1,19 @@
+<div class="card" (click)="sendToParent(cardItem.username)" [ngStyle]="{'border': activeUserName===cardItem.username? '3px solid red':''}">
+    <img src="{{ cardItem.image }}" class="card-img-top" alt="Profile Picture" />
+    <div class="card-body">
+      <div *ngIf="activeUserName===cardItem.username; then thenBlock else elseBlock"></div>
+      <ng-template #thenBlock><h5 class="card-title">{{ cardItem.username | uppercase }}</h5></ng-template>
+
+      <ng-template #elseBlock> <h5 class="card-title">{{ cardItem.username }}</h5></ng-template>
+
+      <p class="card-text"><strong>Email:</strong> {{ cardItem.email }}</p>
+
+      <div *ngIf="cardItem.is_verified; then thenBlock else elseBlock"></div>
+
+      <ng-template #thenBlock><i class="fa-solid fa-circle-check"></i></ng-template>
+      <ng-template #elseBlock> <i class="fa-solid fa-circle-xmark"></i></ng-template>
+      
+      <p class="card-text"><strong>Phone:</strong> {{ cardItem.phone }}</p>
+      <p class="card-text"><strong>Birthdate:</strong> {{ cardItem.birthDate | date}}</p>
+    </div>
+  </div>
